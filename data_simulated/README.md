@@ -2,7 +2,7 @@
 
 This folder contains simulated data on 2 cluster outbreaks. These cluster outbreaks were simulated using the R package [seedy](https://doi.org/10.1371/journal.pone.0129745). These are formatted and ready to be input to the serial interval estimation procedure in the *SI-from-clusters* folder.
 
-Cluster 1 - 43 cases
+Cluster 1 - 43 cases <br>
 Cluster 2 - 46 cases
 
 Both clusters simulated with: 
