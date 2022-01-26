@@ -21,5 +21,11 @@ Jessica E. Stockdale, Kurnia Susvitasari, Paul Tupper, Benjamin Sobkowiak, Nicol
 
 2. Enter the 'SI-from-clusters' folder and run *Create_transcloud_sim*, remembering to set your file paths and desired criteria for plausible transmission pairs. Proceed to *Master_analysis.R* to run the serial interval estimation. 
 
+## Authors
+Jessica Stockdale (maintainer. jessica_stockdale@sfu.ca) <br />
+Kurnia Susvitasari <br />
+Anders Gonçalves da Silva <br />
+Nicola Mulberry
+
  
 
