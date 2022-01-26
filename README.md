@@ -8,7 +8,7 @@ Jessica E. Stockdale, Kurnia Susvitasari, Paul Tupper, Benjamin Sobkowiak, Nicol
 
 ## File/folder contents:
 * 'SI-from-clusters' contains all user-facing code and the R project file. A readme with full details of all scripts is included in this folder.
-* 'SI with coprimary' contains utility functions for the underlying statistical model, including coprimary transmission.
+* 'SI with coprimary' contains utility functions for the underlying statistical model including coprimary transmission.
 * 'SI with noncoprimary' contains equivalent utilities for a model with no coprimary transmission.
 * 'data_simulated' contains a simulated dataset which is ready to be used with the above code
  
