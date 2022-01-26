@@ -12,6 +12,14 @@ Jessica E. Stockdale, Kurnia Susvitasari, Paul Tupper, Benjamin Sobkowiak, Nicol
 * 'SI with noncoprimary' contains equivalent utilities for a model with no coprimary transmission.
 * 'data_simulated' contains a simulated dataset which is ready to be used with the above code
  
- All code was prepared and tested under R version 4.1.0 (2021-05-18). Package dependencies are listed and will be automatically installed in * *SI-from-clusters/set_up_analysis.R* *
+ All code was prepared and tested under R version 4.1.0 (2021-05-18). Package dependencies are listed and will be automatically installed in *SI-from-clusters/set_up_analysis.R*
+ 
+ ## To use your own data:
+ 1. Create a new data folder containing 
+ * a .fasta file of all viral sequences
+ * a .csv file with 3 columns: sample_id = name of sequences in .fasta,	onset_date = case symptom onset date,	cluster_id = identifier of which cluster the case is in (can be character or numeric)
+
+2. Enter the 'SI-from-clusters' folder and run *Create_transcloud_sim*, remembering to set your file paths and desired criteria for plausible transmission pairs. Proceed to *Master_analysis.R* to run the serial interval estimation. 
+
  
 
