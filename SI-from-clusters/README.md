@@ -1,24 +1,26 @@
-# Estimating serial intervals from genomic clusters 
+# Estimating serial intervals in clusters of cases using viral sequences and symptom onset times, taking incomplete sampling into account.
 
-**Master_analysis.R**: main file from which to run serial interval estimation. This calls the below scripts
+**genomicSIs.RProj**: R project file for the repository.
 
-**set_up_analysis.R**: Called from master_analysis. Reads in data, libraries etc. 
+**Create_transcloud_sim.R**: Uses the [transtreesampler](https://github.com/andersgs/transtreesampler) package to build the transmission cloud. This is the first script you should run. It is set up to run the simulated data included with this repo.
 
-**run_analysis.R**: Called from master_analysis. Performs the serial interval estimation
 
-**results_compile.R**: Called from master_analysis. Generates plots and results table for serial interval estimation.
+**Master_analysis.R**: main file from which to run serial interval estimation. This calls the below scripts:
 
-**Figs_epicurves.R**: Generates epi curves for each cluster, by onset and collection date. Called from master_analysis.
- 
-**Figs_clevelanddot.R**: Generates cleveland dot plots for each cluster, showing onset and collection dates of all cases. Called from master_analysis.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **set_up_analysis.R**: Called from master_analysis. Reads in data, libraries etc. 
 
-**Figs_trees.R**: Generates plots of the individual trees sampled in the serial interval analysis. Called from master_analysis.
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **run_analysis.R**: Called from master_analysis. Performs the serial interval estimation
 
-**Figs_treenetworks.R**: Generates network plots of the space of trees sampled in the serial interval analysis. Called from master_analysis.
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **results_compile.R**: Called from master_analysis. Generates plots and results table.
 
-**estimate_Rt .R**: Generates Rt estimates from the cluster-specific serial interval estimates. Called from master_analysis.
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Figs_epicurves.R**: Generates epi curves for each cluster, by onset date. Called from master_analysis.
 
-**Create_transcloud.R**: Uses the transtreesampler package to build the transmission cloud. This needs to be run before Master_analysis.
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Figs_trees.R**: Generates plots of the individual trees sampled in the serial interval analysis. Called from master_analysis.
+
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Figs_treenetworks.R**: Generates network plots of the space of trees sampled in the serial interval analysis. Called from master_analysis.
+
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **estimate_Rt .R**: Generates Rt estimates from the cluster-specific serial interval estimates. Called from master_analysis.
+
 
 **sensitivityanalysis_prior.R**: Performs sensitivity analysis to prior distributions for pi and w.
 
