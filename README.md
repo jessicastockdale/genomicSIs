@@ -13,6 +13,14 @@ Jessica E. Stockdale, Kurnia Susvitasari, Paul Tupper, Benjamin Sobkowiak, Nicol
 * 'data_simulated' contains a simulated dataset which is ready to be used with the above code
  
  All code was prepared and tested under R version 4.1.0 (2021-05-18). Package dependencies are listed and will be automatically installed in *SI-from-clusters/set_up_analysis.R*
+
+ ## How do I run the code with the pre-prepared simulated data?
+1. Enter the 'SI-from-clusters' folder and open the R project *.RProj* file. 
+
+2. Open and run *Master_analysis.R*
+
+ The transmission cloud for the simulated data has already been built and is included in the *data_simulated* folder. If you want to see how this was generated, take a look at *SI-from-clusters/Create_transcloud_sim.R* first.
+
  
  ## How can I run this with my own data?
  1. Create a new data folder containing 
