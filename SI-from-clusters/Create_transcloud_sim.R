@@ -10,6 +10,10 @@
 ###
 #####################################################################
 
+# Only need to run this the first time to install 'transtreesampler' package:
+install.packages("remotes")
+remotes::install_github("andersgs/transtreesampler")
+#
 
 library(transtreesampler)
 library(magrittr)
