@@ -1,10 +1,10 @@
 # Estimating serial intervals in clusters of cases using viral sequences and symptom onset times, taking incomplete sampling into account.
 
-This folder is set up to run the analysis for the simulated outbreaks included in the 'data_simulated' folder
+This folder is set up to run the analysis for two waves of Victorian COVID-19 data, as in the 'data_Victoria' folder
 
-**genomicSIs.RProj**: R project file for the repository.
+**genomicSIs_Victoria.RProj**: R project file.
 
-**Create_transcloud_sim.R**: Uses the [transtreesampler](https://github.com/andersgs/transtreesampler) package to build the transmission cloud. This is the first script you should run. It is set up to run the simulated data included with this repo.
+**Create_transcloud_w1.R & Create_transcloud_w2.R**: Uses the [transtreesampler](https://github.com/andersgs/transtreesampler) package to build the transmission cloud. This is the first script you should run.
 
 
 **Master_analysis.R**: main file from which to run serial interval estimation. This calls the below scripts:

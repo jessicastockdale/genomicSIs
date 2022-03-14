@@ -32,9 +32,8 @@ data <- rename(data, cluster_id = cluster_id)
 # Set cluster names
 names <- sort(paste0("cluster_", unique(data$cluster_id)))
 for(i in names){ 
-  filepath <- file.path("../data_simulated/cluster_ids",paste(i,"_IDs.txt",sep=""))
+  filepath <- file.path("../data_Victoria/cluster_ids",paste(i,"_IDs.txt",sep=""))
   assign(i, read.table(filepath))
 }
-
 
 

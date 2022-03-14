@@ -47,7 +47,7 @@ if (coprim.transm == TRUE){
 if (w.model=="none"){w.info <- NULL}
 
 # How many trees should we sample from each cluster? Must be at least 10
-how.many = 100
+how.many = 10
 
 ###########################################################################
 ### Set-up - run the set-up script: loads libraries, data files, sets seed etc. 
@@ -73,19 +73,18 @@ res <- readRDS(file = paste0(model, "_resultsobject.rda"))
 
 
 
+
+
 ###########################################################################
 ### Read in metadata
-if (which.wave==1){
-  # wave 1 metadata
-  metadata <- as_tibble(read.csv("../data_simulated/epidata_simclusters.csv")) %>%
-    # Rename columns to required format. Need: cluster_id, case_id, onset_date
-    rename(case_id = sample_id) %>%
-    # Ensure onset_date is of date type
-    mutate(onset_date=as.Date(onset_date, format = "%Y-%m-%d"))
-}else{
-print("There is no wave 2 simulated data")
-}
-# remove any cases with missing symptom onset
+metadata <- as_tibble(read.csv(paste0("../data_Victoria/epidata_w", which.wave, "clusters.csv"))) %>%
+  # Rename columns to required format. Need: cluster_id, case_id, onset_date 
+  rename(case_id = GISAID_ID) %>% 
+  # Ensure onset_date is of date type
+  mutate(onset_date=as.Date(onset_date, format = "%Y-%m-%d"))
+
+
+# remove any cases with missing onset
 metadata <- metadata[!is.na(metadata$onset_date),]
 
 
@@ -123,6 +122,7 @@ if (relabel){
   names <- new.names
   
 }
+
   
 ###########################################################################
 ### Generate and print results table and figures (saves all to pdf)
@@ -148,7 +148,6 @@ plots_e
 # NOTE: this requires original metadata to run
 source("estimate_Rt.R")
 rt <- estimate.rt(metadata, coprim.transm, pi.model, w.model, pool.trees, which.wave)
-
 
 ###########################################################################
 
