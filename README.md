@@ -21,13 +21,16 @@ Jessica E. Stockdale, Kurnia Susvitasari, Paul Tupper, Benjamin Sobkowiak, Nicol
 
  The transmission cloud for the simulated data has already been built and is included in the *data_simulated* folder. If you want to see how this was generated, take a look at *SI-from-clusters/Create_transcloud_sim.R* first.
 
- 
+
  ## How can I run this with my own data?
  1. Create a new data folder containing 
  * a .fasta file of all viral sequences
  * a .csv file with 3 columns: sample_id = name of sequences in .fasta,	onset_date = case symptom onset date,	cluster_id = identifier of which cluster the case is in (can be character or numeric)
 
 2. Enter the 'SI-from-clusters' folder and run *Create_transcloud_sim*, remembering to set your file paths and desired criteria for plausible transmission pairs. Proceed to *Master_analysis.R* to run the serial interval estimation. 
+
+## Victorian SARS-CoV-2 data 
+This repository also contains source data for the above manuscript, for cases of COVID-19 in Victoria, Australia. The *data_Victoria* folder contains GISAID accession numbers to access the sequences, and symptom onset times. The *SI-from-clusters-Victoria* folder then contains a version of the model code specifically adapted for the Victorian analysis.
 
 ## Authors
 Jessica Stockdale (maintainer. jessica_stockdale@sfu.ca) <br />
