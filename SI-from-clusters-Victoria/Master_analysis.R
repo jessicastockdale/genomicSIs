@@ -120,17 +120,20 @@ if (relabel){
   data <- data %>% mutate(cluster_id = as.character(cluster_id)) %>% left_join(lookup, by = "cluster_id") %>% select(-cluster_id) %>% rename(cluster_id=new.names)
   metadata <- metadata %>% mutate(cluster_id = as.character(cluster_id)) %>% left_join(lookup, by = "cluster_id") %>% select(-cluster_id) %>% rename(cluster_id=new.names)
   names <- new.names
-  
-}
+}else{lookup=NA}
 
   
 ###########################################################################
 ### Generate and print results table and figures (saves all to pdf)
 
 source("results_compile.R")
-results_gen <- SI_results(res, data, names, coprim.transm, pi.model, w.model, pool.trees, which.wave, which.names)
+results_gen <- SI_results(res, data, names, coprim.transm, pi.model, w.model, pool.trees, which.wave, which.names, pi.info, w.info)
 grid.arrange(grobs=results_gen$Table)
 
+
+source("Figs_exposure.R")
+plots_exposure <- exposure_types(res, metadata, names, coprim.transm, pi.model, w.model, pool.trees, which.wave, which.names)
+plots_exposure
 
 
 ###########################################################################

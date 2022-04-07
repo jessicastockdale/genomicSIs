@@ -1,7 +1,7 @@
 ## This code creates various tables and figures from the SI estimation analysis, link to 
 # this from Master_analysis.R
 
-SI_results <- function(results, data, names, coprim.transm=TRUE, pi.model="none", w.model="none", pool.trees=FALSE, which.wave = 1, which.names = 1:length(names)){
+SI_results <- function(results, data, names, coprim.transm=TRUE, pi.model="none", w.model="none", pool.trees=FALSE, which.wave = 1, which.names = 1:length(names), pi.info=NA, w.info=NA){
   
  ## Histograms of observed serial intervals
   pdf(paste0("../Figures/obs_si_w", which.wave, ".pdf"), height = 8.3, width= 11.7, paper="a4r")
@@ -346,6 +346,9 @@ SI_results <- function(results, data, names, coprim.transm=TRUE, pi.model="none"
     theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1), text = element_text(size=14))
   
   p3 <- ggplot(res_dat, aes(x=cluster, y=pi, col=cluster)) +
+    {if(pi.model=="prior")geom_rect(aes(ymin=hdi(rbeta(1000000,pi.info[1], pi.info[2]), credMass = 0.95)[1], ymax=hdi(rbeta(1000000,pi.info[1], pi.info[2]), 
+                                                                                                                      credMass = 0.95)[2], xmin=levels(cluster)[length(cluster)], 
+                                        xmax=levels(cluster)[1]), alpha=0.03, fill="lightsteelblue2",colour=NA)} +
     geom_errorbar(aes(ymin = pi_ciL, ymax = pi_ciU), width=0.2)+
     geom_point()+ylim(0,1)+
     labs(title="Sampling Proportion",x="Cluster", y = expression(pi))
@@ -354,6 +357,9 @@ SI_results <- function(results, data, names, coprim.transm=TRUE, pi.model="none"
   
   if (coprim.transm == TRUE){
     p6 <- ggplot(res_dat, aes(x=cluster, y=w, col=cluster)) + 
+      {if(pi.model=="prior")geom_rect(aes(ymin=hdi(rbeta(1000000,w.info[1], w.info[2]), credMass = 0.95)[1], ymax=hdi(rbeta(1000000,w.info[1], w.info[2]), 
+                                                                                                                      credMass = 0.95)[2], xmin=levels(cluster)[length(cluster)], 
+                                          xmax=levels(cluster)[1]), alpha=0.03, fill="lightsteelblue2",colour=NA)} +
       geom_errorbar(aes(ymin = w_ciL, ymax = w_ciU), width=0.2)+
       geom_point()+ylim(0,1)+
       labs(title="Proportion Non-coprimary",x="Cluster", y = "w")

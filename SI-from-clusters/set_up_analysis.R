@@ -12,7 +12,7 @@ set.seed(58392)
 packages <- c("ggplot2", "tidyverse", "gridExtra", "gridBase", "reshape2", "lattice",
               "future", "RColorBrewer", "stringr", "igraph", "visNetwork", "numDeriv",
               "doParallel", "doSNOW", "tcltk", "EpiEstim", "ggpubr", "cowplot", "scales",
-              "padr", "gtools", "grid", "ape", "seqinr")
+              "padr", "gtools", "grid", "ape", "seqinr", "HDInterval")
 # Install packages not yet installed
 installed_packages <- packages %in% rownames(installed.packages())
 if (any(installed_packages == FALSE)) {
@@ -26,7 +26,7 @@ rm(installed_packages, packages)
 dir.create(file.path("sampled_trees"), showWarnings = FALSE)
 
 ## Read in the data
-data <- as_tibble(read.csv(paste0("../data_Victoria/w", which.wave, "_transmission_cloud.csv")))
+data <- as_tibble(read.csv(paste0("../data_simulated/sim_transmission_cloud.csv")))
 # Ensure cluster column is called cluster_id
 data <- rename(data, cluster_id = cluster_id)
 # Set cluster names

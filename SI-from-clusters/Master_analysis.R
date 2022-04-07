@@ -128,7 +128,7 @@ if (relabel){
 ### Generate and print results table and figures (saves all to pdf)
 
 source("results_compile.R")
-results_gen <- SI_results(res, data, names, coprim.transm, pi.model, w.model, pool.trees, which.wave, which.names)
+results_gen <- SI_results(res, data, names, coprim.transm, pi.model, w.model, pool.trees, which.wave, which.names, pi.info, w.info)
 grid.arrange(grobs=results_gen$Table)
 
 

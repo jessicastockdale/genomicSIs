@@ -21,6 +21,8 @@ SI_estimation <- function(data, names, coprim.transm=TRUE, pi.model="none", w.mo
     model <- paste0(model, "w")
   }
   print(paste0("Confirming, chosen model is: ", model))  
+  # Create directory for model results, if it doesn't already exist
+  dir.create(file.path(paste0("../Figures/", model)), showWarnings = FALSE)
   
   
   ## Configuration of the SI estimation

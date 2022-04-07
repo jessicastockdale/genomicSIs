@@ -12,7 +12,7 @@ set.seed(58392)
 packages <- c("ggplot2", "tidyverse", "gridExtra", "gridBase", "reshape2", "lattice",
               "future", "RColorBrewer", "stringr", "igraph", "visNetwork", "numDeriv",
               "doParallel", "doSNOW", "tcltk", "EpiEstim", "ggpubr", "cowplot", "scales",
-              "padr", "gtools", "grid", "ape", "seqinr")
+              "padr", "gtools", "grid", "ape", "seqinr", "HDInterval")
 # Install packages not yet installed
 installed_packages <- packages %in% rownames(installed.packages())
 if (any(installed_packages == FALSE)) {
