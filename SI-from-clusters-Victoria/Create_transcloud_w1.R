@@ -20,21 +20,21 @@ library(magrittr)
 
 ## prepare data
 data_dir <- "../data_Victoria"
-fasta <- "w1_genomes.fasta" # This should be the sequences from gisaid, aligned
+fasta <- "w1_genomes.fasta" # This should be the sequences from gisaid, aligned and with names matching gisaid IDs
 metadata <- "gisaid_ids_Stockdaleetal.csv"
 
 # load data ---------------------------------------------------------------
 aln <- ape::read.FASTA(file.path(data_dir, fasta))
 names(aln) <- sub('\\|.*', '', labels(aln))
-mdt <- readr::read_csv(file.path(data_dir, metadata))
-
+mdt <- readr::read_csv(file.path(data_dir, metadata), col_types = "cDddc")
+mdt <- mdt %>% dplyr::rename(cluster_id = wave1_cluster_id)
 
 # set params --------------------------------------------------------------
 # Do you want to get serial intervals or collection/diagnosis intervals?
 which.type <- quote(onset_date) # or quote(diagnosis_date) 
 
 cluster_col <- quote(cluster_id) # which column indicates cluster names
-sample_id_col <- quote(GISAID_ID) # which column indicates sample ids
+sample_id_col <- quote(gisaid_accession) # which column indicates sample ids
 onset_date_col <- which.type
 min_cluster_size <- 15
 max_genetic_dist <- 1.1/29306 # approx. 1 SNP equivalent
@@ -46,10 +46,10 @@ output_filename <- "../data_Victoria/w1_transmission_cloud.csv"
 mdt <- mdt[!is.na(mdt$onset_date),]  
 
 # remove rows in metadata that are not wave 1 sequences
-mdt <- mdt[mdt$GISAID_ID %in% names(aln),]
+mdt <- mdt[!is.na(mdt$cluster_id ),]
 
 # remove sequences that are not in the metadata
-aln <- aln[names(aln) %in% mdt$GISAID_ID]
+aln <- aln[names(aln) %in% mdt$gisaid_accession]
 
 
 # transmission cloud ------------------------------------------------------

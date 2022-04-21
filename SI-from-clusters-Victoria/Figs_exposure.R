@@ -68,15 +68,15 @@ if (coprim.transm == TRUE){
 }
 
 # Add exposure site types
-res_dat <- metadata[,c("cluster_id", "exposure_site_category")] %>% distinct() %>%  
-                  merge(res_dat, by.y = c("cluster"), by.x = c("cluster_id"), all.y=TRUE ) %>% rename("cluster"="cluster_id")
+res_dat <- metadata[,c("cluster_id", "Type")] %>% dplyr::distinct() %>%  
+                  merge(res_dat, by.y = c("cluster"), by.x = c("cluster_id"), all.y=TRUE ) %>% dplyr::rename("cluster"="cluster_id")
 
 
 # Add pooled trees if available
-ncols <- length(unique(res_dat$exposure_site_category)) 
+ncols <- length(unique(res_dat$Type)) 
 if (pool.trees==TRUE){
   ncols <- ncols + 1
-  res_dat_pooled$exposure_site_category <- "All"
+  res_dat_pooled$Type <- "All"
   res_dat <- rbind(res_dat, res_dat_pooled)
 }
 mycols <- brewer.pal(8, "Set1")[-6]
@@ -87,7 +87,7 @@ levs <- res_dat$cluster[order(res_dat$mu)]
 levs <- c(levs[1:(which(levs=="All")-1)], levs[(which(levs=="All")+1):length(levs)], levs[which(levs=="All")])
 res_dat$cluster <- factor(res_dat$cluster, levels=levs)
 
-p1 <- ggplot(res_dat, aes(x=cluster, y=mu, col=exposure_site_category)) +
+p1 <- ggplot(res_dat, aes(x=cluster, y=mu, col=Type)) +
   geom_errorbar(aes(ymin = mu_ciL, ymax = mu_ciU), width=0.2)+
   geom_point()+
   labs(title=paste0(measure, " Mean"),x="Cluster", y = expression(mu)) 
@@ -96,7 +96,7 @@ p1 <- p1  + theme_classic() + scale_colour_manual(values = mycols) +
   scale_x_discrete(guide = guide_axis(n.dodge = 2))
 p1
 
-p2 <- ggplot(res_dat, aes(x=cluster, y=sigma, col=exposure_site_category)) +
+p2 <- ggplot(res_dat, aes(x=cluster, y=sigma, col=Type)) +
   geom_errorbar(aes(ymin = sigma_ciL, ymax = sigma_ciU), width=0.2)+
   geom_point()+
   labs(title=paste0(measure, " SD"),x="Cluster", y = expression(sigma))
@@ -104,7 +104,7 @@ p2 <- p2  + guides(col="none") + theme_classic() + scale_colour_manual(values = 
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1), text = element_text(size=14)) +
   scale_x_discrete(guide = guide_axis(n.dodge = 2))
 
-p3 <- ggplot(res_dat, aes(x=cluster, y=pi, col=exposure_site_category)) +
+p3 <- ggplot(res_dat, aes(x=cluster, y=pi, col=Type)) +
   geom_errorbar(aes(ymin = pi_ciL, ymax = pi_ciU), width=0.2)+
   geom_point()+ylim(0,1)+
   labs(title="Sampling Proportion",x="Cluster", y = expression(pi))
@@ -113,7 +113,7 @@ p3 <- p3  + guides(col="none") + theme_classic() + scale_colour_manual(values = 
   scale_x_discrete(guide = guide_axis(n.dodge = 2))
 
 if (coprim.transm == TRUE){
-  p6 <- ggplot(res_dat, aes(x=cluster, y=w, col=exposure_site_category)) + 
+  p6 <- ggplot(res_dat, aes(x=cluster, y=w, col=Type)) + 
     geom_errorbar(aes(ymin = w_ciL, ymax = w_ciU), width=0.2)+
     geom_point()+ylim(0,1)+
     labs(title="Proportion non-coprimary",x="Cluster", y = "w")
@@ -147,7 +147,7 @@ if (pool.trees==TRUE){
 # data structure
 min_onset <- metadata %>% group_by(cluster_id) %>% summarise(minons = min(onset_date, na.rm=TRUE))
 scatterdat <- tibble(cluster = res_dat$cluster, mu = res_dat$mu, pi = res_dat$pi, initial.onset = as.Date(min_onset$minons), 
-                     cl.size = table(metadata$cluster_id), Type = res_dat$exposure_site_category)
+                     cl.size = table(metadata$cluster_id), Type = res_dat$Type)
 # Change NA to "NA"
 scatterdat$Type[is.na(scatterdat$Type)] <- "NA"
 

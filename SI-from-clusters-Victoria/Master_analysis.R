@@ -131,9 +131,11 @@ results_gen <- SI_results(res, data, names, coprim.transm, pi.model, w.model, po
 grid.arrange(grobs=results_gen$Table)
 
 
-source("Figs_exposure.R")
-plots_exposure <- exposure_types(res, metadata, names, coprim.transm, pi.model, w.model, pool.trees, which.wave, which.names)
-plots_exposure
+if (which.wave==2){ # Figures by exposure site type (wave 2 only)
+  source("Figs_exposure.R")
+  plots_exposure <- exposure_types(res, metadata, names, coprim.transm, pi.model, w.model, pool.trees, which.wave, which.names)
+  plots_exposure
+}
 
 
 ###########################################################################
