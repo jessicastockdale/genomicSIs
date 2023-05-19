@@ -49,7 +49,7 @@ SIestim <- function(trees, si.config=list(par0, lower, upper, ci), method="OPTIM
   #filter estimates that are exactly at the bound
   temp <- estim
   estim <- estim %>% filter(msg=="CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH" | (msg=="ESTIMATES ARE EXACTLY AT THE BOUND." & (pi == 1.0)))
-  if(nrow(estim)<1) estim <- temp #return everything if even though the estimates are at bound or error.
+  if(nrow(estim)<1) estim <- temp #return everything if you end up filtering out everything, even though the estimates are at bound or error.
   
   # Option to filter outlier trees - defined as outside  mean +- 3*sd.
   #temp2 <- estim
