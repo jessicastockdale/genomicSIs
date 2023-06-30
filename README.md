@@ -11,6 +11,7 @@ Jessica E. Stockdale, Kurnia Susvitasari, Paul Tupper, Benjamin Sobkowiak, Nicol
 * 'SI with coprimary' contains utility functions for the underlying statistical model including coprimary transmission.
 * 'SI with noncoprimary' contains equivalent utilities for a model with no coprimary transmission.
 * 'data_simulated' contains a simulated dataset which is ready to be used with the above code
+* 'simulation_study' contains code to run all simulation based analyses in the manuscript
  
  All code was prepared and tested under R version 4.1.0 (2021-05-18). Package dependencies are listed and will be automatically installed in *SI-from-clusters/set_up_analysis.R*
 
@@ -30,7 +31,8 @@ Jessica E. Stockdale, Kurnia Susvitasari, Paul Tupper, Benjamin Sobkowiak, Nicol
 2. Enter the 'SI-from-clusters' folder and run *Create_transcloud_sim*, remembering to set your file paths and desired criteria for plausible transmission pairs. Proceed to *Master_analysis.R* to run the serial interval estimation. 
 
 ## Victorian SARS-CoV-2 data 
-This repository also contains source data for the above manuscript, for cases of COVID-19 in Victoria, Australia. The *data_Victoria* folder contains GISAID accession numbers to access the sequences, and symptom onset times. The *SI-from-clusters-Victoria* folder then contains a version of the model code specifically adapted for the Victorian analysis.
+This repository also contains source data for the above manuscript, for cases of COVID-19 in Victoria, Australia. The *data_Victoria* folder contains GISAID accession numbers to access the sequences and symptom onset times, as well as acknowledgements to the submitting laboratories. 
+The *SI-from-clusters-Victoria* folder then contains a version of the model code specifically adapted for the Victorian analysis.
 
 ## Authors
 Jessica Stockdale (maintainer. jessica_stockdale@sfu.ca) <br />
